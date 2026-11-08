@@ -1,525 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cutiepage: Diwali Edition ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff477e;
-            --secondary: #ff70a6;
-            --accent: #ffd166;
-            --deep-bg: #0f051d;
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --text-color: #fff0f3;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cutiepage: Diwali Edition ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff477e;
+      --secondary: #ff70a6;
+      --accent: #ffd166;
+      --deep-bg: #0f051d;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --text-color: #fff0f3;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
 
-        body {
-            background-color: var(--deep-bg);
-            color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            position: relative;
-        }
+    body {
+      background-color: var(--deep-bg);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        /* Ambient Background Glow */
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 50% 20%, rgba(255, 112, 166, 0.15), rgba(15, 5, 29, 0.95));
-            z-index: -1;
-        }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
 
-        canvas#fireworks {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
+    header {
+      text-align: center;
+      padding: 40px 0 20px;
+    }
 
-        /* Container */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      text-shadow: 0 0 15px rgba(255, 205, 102, 0.4);
+      margin-bottom: 10px;
+    }
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 40px 0 20px;
-        }
+    header p {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      font-style: italic;
+    }
 
-        header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(255, 209, 102, 0.4);
-            margin-bottom: 10px;
-        }
+    .section-title {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin: 40px 0 20px;
+    }
 
-        header p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
+    .polaroid {
+      background: white;
+      padding: 15px 15px 25px 15px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      margin: 30px auto;
+      max-width: 320px;
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+    }
 
-        /* Interactive Diya Section */
-        .diya-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
+    .polaroid:nth-child(even) {
+      transform: rotate(2deg);
+    }
 
-        .diya-card:hover {
-            transform: translateY(-3px);
-        }
+    .polaroid img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
 
-        .diya-icon {
-            font-size: 3rem;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.6));
-        }
-
-        .diya-icon:active {
-            transform: scale(1.3) rotate(15deg);
-        }
-
-        .diya-card h3 {
-            margin: 10px 0 5px;
-            font-size: 1.2rem;
-            color: var(--accent);
-        }
-
-        .diya-card p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Memory Gallery */
-        .section-title {
-            font-family: 'Cinzel', serif;
-            text-align: center;
-            font-size: 1.5rem;
-            margin: 40px 0 20px;
-            color: var(--accent);
-            letter-spacing: 1px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .polaroid {
-            background: #fff;
-            color: #222;
-            padding: 12px 12px 35px 12px;
-            border-radius: 6px;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-            transform: rotate(-2deg);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .polaroid:nth-child(even) {
-            transform: rotate(2deg);
-        }
-
-        .polaroid:hover {
-            transform: scale(1.05) rotate(0deg);
-            z-index: 10;
-            box-shadow: 0 15px 35px rgba(255, 112, 166, 0.4);
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .polaroid .caption {
-            font-family: 'Dancing Script', cursive;
-            text-align: center;
-            font-size: 1.3rem;
-            margin-top: 10px;
-            color: #444;
-        }
-
-        /* Reasons Section */
-        .reasons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .reason-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 18px 20px;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .reason-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--secondary);
-        }
-
-        .reason-card span {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .reason-card .heart-icon {
-            color: var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .reason-card.revealed .heart-icon {
-            transform: scale(1.3);
-            color: var(--accent);
-        }
-
-        /* Love Meter */
-        .love-meter-box {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .sparkle-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 71, 126, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 15px;
-        }
-
-        .sparkle-btn:active {
-            transform: scale(0.95);
-        }
-
-        #meter-result {
-            margin-top: 15px;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            color: var(--accent);
-            min-height: 40px;
-        }
-
-        /* Love Letter Envelope */
-        .envelope-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin: 30px 0 50px;
-        }
-
-        .envelope {
-            font-size: 4rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .envelope:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .letter-content {
-            display: none;
-            background: #fff9fb;
-            color: #2b1d24;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 20px;
-            text-align: left;
-            font-size: 1rem;
-            line-height: 1.7;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: fadeIn 0.6s ease forwards;
-            position: relative;
-        }
-
-        .letter-content h4 {
-            font-family: 'Cinzel', serif;
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-        }
-
-        .letter-content p {
-            margin-bottom: 12px;
-        }
-
-        .letter-content .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: var(--primary);
-            text-align: right;
-            margin-top: 15px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px 0 40px;
-            font-size: 0.85rem;
-            opacity: 0.7;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 1px;
-        }
-    </style>
+    .polaroid p {
+      text-align: center;
+      color: #333;
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-    <canvas id="fireworks"></canvas>
+  <div class="container">
+    <header>
+      <h1>HAPPY DIWALI, MY LOVE ✨</h1>
+      <p>You light up my world brighter than a million dijas</p>
+    </header>
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Happy Diwali, My Love ✨</h1>
-            <p>You light up my world brighter than a million diyas</p>
-        </header>
+    <h2 class="section-title">OUR UNFORGETTABLE MOMENTS</h2>
 
-        <!-- Interactive Diya Card -->
-        <div class="diya-card">
-            <div class="diya-icon" id="diyaBtn" onclick="lightDiya()">🪔</div>
-            <h3>Tap to Light Our Diya</h3>
-            <p id="diyaText">Let's fill this festival with warmth and endless love.</p>
-        </div>
-
-        <!-- Memory Gallery -->
-        <h2 class="section-title">Our Unforgettable Moments </h2>
-        <div class="gallery-grid">
-            <div class="polaroid">
-                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="Memory 1">
-                <div class="caption">Our favorite smiles ❤️</div>
-            </div>
-            <div class="polaroid">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Memory 2">
-                <div class="caption">Endless conversations ✨</div>
-            </div>
-            <div class="polaroid">
-                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Memory 3">
-                <div class="caption">My safe place 🌙</div>
-            </div>
-        </div>
-
-        <!-- Reasons Why You Light Up My World -->
-        <h2 class="section-title">Why You Light Up My World</h2>
-        <div class="reasons-container">
-            <div class="reason-card" onclick="revealReason(this, 'Your laugh is literally my favorite sound in the entire universe.')">
-                <span>Reason #1: Your gorgeous smile</span>
-                <span class="heart-icon">❤️</span>
-            </div>
-            <div class="reason-card" onclick="revealReason(this, 'Even the most boring days turn magical just by talking to you.')">
-                <span>Reason #2: How you make every moment special</span>
-                <span class="heart-icon">❤️</span>
-            </div>
-            <div class="reason-card" onclick="revealReason(this, 'You understand me better than anyone else ever could.')">
-                <span>Reason #3: Your endless warmth and care</span>
-                <span class="heart-icon">❤️</span>
-            </div>
-        </div>
-
-        <!-- Love Meter / Sparkle Generator -->
-        <div class="love-meter-box">
-            <h2 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--accent);">Diwali Sparkle Meter</h2>
-            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Tap to calculate our festive connection today!</p>
-            <button class="sparkle-btn" onclick="calculateLove()">Generate Sparkles ✨</button>
-            <div id="meter-result"></div>
-        </div>
-
-        <!-- Love Letter Envelope -->
-        <div class="envelope-section">
-            <h2 class="section-title" style="margin-top: 0;">A Special Letter For You</h2>
-            <div class="envelope" onclick="openLetter()">💌</div>
-            <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 5px;">Tap the envelope to open</p>
-            
-            <div class="letter-content" id="loveLetter">
-                <h4>My Dearest,</h4>
-                <p>On this beautiful festival of lights, I wanted to create something as special as you are to me. You bring so much joy, light, and love into my life every single day.</p>
-                <p>No crackers or fireworks can ever match the sparkle you bring into my eyes. Thank you for being my greatest blessing and my favorite reason to smile.</p>
-                <p>Wishing you the happiest Diwali, my love. Here's to making countless more memories together.</p>
-                <div class="signature">Forever Yours ❤️</div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            Made with all my heart, just for you. Happy Diwali ✨
-        </footer>
+    <!-- Moment 1 -->
+    <div class="polaroid">
+      <img src="photo1.jpg" alt="Our favorite smile">
+      <p>My fav smile ❤️</p>
     </div>
 
-    <script>
-        // Interactive Diya
-        let diyaLit = false;
-        function lightDiya() {
-            const diya = document.getElementById('diyaBtn');
-            const text = document.getElementById('diyaText');
-            diyaLit = !diyaLit;
-            if(diyaLit) {
-                diya.style.filter = "drop-shadow(0 0 25px #ffd166)";
-                text.innerText = "✨ The Diya is lit, just like the spark in our hearts! ✨";
-                triggerFireworksBurst();
-            } else {
-                diya.style.filter = "drop-shadow(0 0 10px rgba(255, 209, 102, 0.6))";
-                text.innerText = "Let's fill this festival with warmth and endless love.";
-            }
-        }
+    <!-- Moment 2 -->
+    <div class="polaroid">
+      <img src="photo2.jpg" alt="Endless conversations">
+      <p>Baby ✨</p>
+    </div>
 
-        // Reveal Reason
-        function revealReason(element, message) {
-            element.classList.add('revealed');
-            element.querySelector('span').innerText = message;
-        }
+    <!-- Moment 3 -->
+    <div class="polaroid">
+      <img src="photo3.jpg" alt="My safe place">
+      <p>Comfortable place 🌙</p>
+    </div>
+  </div>
 
-        // Love Meter
-        function calculateLove() {
-            const results = [
-                "100% Sparkle! Our vibe is brighter than all Diwali firecrackers combined! 🔥❤️",
-                "Infinite Love! You & Me = Absolute magic ✨",
-                "1000% Connected! You're my favorite notification and my favorite person 🌙",
-                "Off the charts! Even the stars are jealous of our bond ✨❤️"
-            ];
-            const randomMsg = results[Math.floor(Math.random() * results.length)];
-            document.getElementById('meter-result').innerText = randomMsg;
-            triggerFireworksBurst();
-        }
-
-        // Open Letter
-        function openLetter() {
-            const letter = document.getElementById('loveLetter');
-            letter.style.display = 'block';
-            letter.scrollIntoView({ behavior: 'smooth' });
-            triggerFireworksBurst();
-        }
-
-        // Fireworks Canvas Animation
-        const canvas = document.getElementById('fireworks');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        let particles = [];
-
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x;
-                this.y = y;
-                this.color = color;
-                this.angle = Math.random() * Math.PI * 2;
-                this.speed = Math.random() * 6 + 2;
-                this.friction = 0.95;
-                this.gravity = 0.08;
-                this.alpha = 1;
-                this.decay = Math.random() * 0.02 + 0.015;
-            }
-
-            update() {
-                this.speed *= this.friction;
-                this.x += Math.cos(this.angle) * this.speed;
-                this.y += Math.sin(this.angle) * this.speed + this.gravity;
-                this.alpha -= this.decay;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        function triggerFireworksBurst() {
-            const colors = ['#ff477e', '#ffd166', '#ff70a6', '#ffffff', '#06d6a0'];
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * (canvas.height / 2);
-            for (let i = 0; i < 40; i++) {
-                particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, index) => {
-                p.update();
-                p.draw();
-                if (p.alpha <= 0) {
-                    particles.splice(index, 1);
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // Auto random ambient spark
-        setInterval(() => {
-            if(Math.random() > 0.6) triggerFireworksBurst();
-        }, 3000);
-    </script>
 </body>
 </html>
-
