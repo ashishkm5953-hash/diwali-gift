@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Special Moments ✨</title>
+  <title>Cutiepage: Diwali Edition ✨</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -28,6 +28,27 @@
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 20%, rgba(255, 112, 166, 0.15), rgba(15, 5, 29, 0.85));
+      z-index: -1;
+    }
+
+    canvas#fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .container {
@@ -47,7 +68,7 @@
       font-family: 'Cinzel', serif;
       font-size: 2.2rem;
       color: var(--accent);
-      text-shadow: 0 0 15px rgba(255, 205, 102, 0.4);
+      text-shadow: 0 0 15px rgba(255, 209, 102, 0.4);
       margin-bottom: 10px;
     }
 
@@ -57,19 +78,38 @@
       font-style: italic;
     }
 
+    .section-title {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin: 40px 0 20px;
+    }
+
+    .polaroid-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
     .polaroid {
-      background: white;
+      background: #ffffff;
       padding: 15px 15px 25px 15px;
       border-radius: 8px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      margin: 30px auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       max-width: 320px;
+      width: 100%;
       transform: rotate(-2deg);
       transition: transform 0.3s ease;
     }
 
     .polaroid:nth-child(even) {
       transform: rotate(2deg);
+    }
+
+    .polaroid:hover {
+      transform: scale(1.03) rotate(0deg);
     }
 
     .polaroid img {
@@ -81,37 +121,45 @@
 
     .polaroid p {
       text-align: center;
-      color: #333;
+      color: #333333;
       font-family: 'Cinzel', serif;
       font-size: 1.1rem;
       margin-top: 15px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
+  <div class="bg-glow"></div>
+  <canvas id="fireworks"></canvas>
+
   <div class="container">
     <header>
-      <h1>OUR SPECIAL MOMENTS ✨</h1>
-      <p>A little piece of my heart</p>
+      <h1>HAPPY DIWALI, MY LOVE ✨</h1>
+      <p>You light up my world brighter than a million diyas</p>
     </header>
 
-    <!-- Moment 1 -->
-    <div class="polaroid">
-      <img src="photo1.jpg" alt="My fav smile">
-      <p>My fav smile ❤️</p>
-    </div>
+    <h2 class="section-title">OUR UNFORGETTABLE MOMENTS</h2>
 
-    <!-- Moment 2 -->
-    <div class="polaroid">
-      <img src="photo2.jpg" alt="Baby">
-      <p>Baby ✨</p>
-    </div>
+    <div class="polaroid-gallery">
+      <!-- Moment 1 -->
+      <div class="polaroid">
+        <img src="photo1.jpg" alt="My fav smile">
+        <p>My fav smile ❤️</p>
+      </div>
 
-    <!-- Moment 3 -->
-    <div class="polaroid">
-      <img src="photo3.jpg" alt="Comfortable place">
-      <p>Comfortable place 🌙</p>
+      <!-- Moment 2 -->
+      <div class="polaroid">
+        <img src="photo2.jpg" alt="Baby">
+        <p>Baby ✨</p>
+      </div>
+
+      <!-- Moment 3 -->
+      <div class="polaroid">
+        <img src="photo3.jpg" alt="Comfortable place">
+        <p>Comfortable place 🌙</p>
+      </div>
     </div>
   </div>
 
